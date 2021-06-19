@@ -3,7 +3,8 @@ import {
   GET_GALLERY,
   SET_GALLERY,
   DELETE_GALLERY,
-  RESET_GALLERY
+  RESET_GALLERY,
+  GALLERY_INIT_DATA
 } from '../actionTypes/GalleryActionTypes';
 
 export const getGallery = payload => ({
@@ -29,4 +30,8 @@ export const deleteGallery = payload => ({
 export const resetGallery = payload => ({
   type: RESET_GALLERY,
   payload
+});
+
+export const galleryInitialData = () => ({
+  type: GALLERY_INIT_DATA
 });

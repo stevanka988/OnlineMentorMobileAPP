@@ -14,7 +14,7 @@ import SharedDailyMeals from './SharedDailyMeals';
 import SharedClientDailyRecipes from './SharedClientDailyRecipes';
 import SharedRecipeDailyModal from './modal/SharedRecipeDailyModal';
 
-const SharedClientDailyMeals = ({ navigation }) => {
+const SharedClientDailyMeals = ({ route }) => {
   const dispatch = useDispatch();
 
   const client = useSelector(currentClientSelector());
@@ -26,7 +26,7 @@ const SharedClientDailyMeals = ({ navigation }) => {
   const [choosedRecipe, setChoosedRecipe] = useState([]);
   const [isRecipeModalVisible, setIsRecipeModalVisible] = useState(false);
 
-  const date = navigation.state.params.date;
+  const date = route.params.date;
 
   useEffect(() => {
     dispatch(
@@ -78,7 +78,7 @@ const SharedClientDailyMeals = ({ navigation }) => {
 export default SharedClientDailyMeals;
 
 SharedClientDailyMeals.propTypes = {
-  navigation: PropTypes.object
+  route: PropTypes.object
 };
 
 SharedClientDailyMeals.navigationOptions = {

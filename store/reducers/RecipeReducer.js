@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { SET_RECIPE_TYPES, SET_RECIPIES } from '../actionTypes/RecipeActionTypes';
+import { SET_RECIPE_TYPES, SET_RECIPIES, RECIPE_INIT_DATA } from '../actionTypes/RecipeActionTypes';
 
 const initialState = {
   recipeTypes: [],
@@ -16,5 +16,7 @@ export default (state = initialState, action) =>
       case SET_RECIPIES:
         draft.recipeList = action.payload;
         break;
+      case RECIPE_INIT_DATA:
+        return initialState;
     }
   });

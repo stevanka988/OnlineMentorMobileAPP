@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable indent */
 import axios from 'axios';
 import { AsyncStorage } from 'react-native';
 import Sentry from 'sentry-expo';
@@ -7,10 +9,7 @@ import config from '../config';
 class HttpService {
   constructor(options = {}) {
     this.client = axios.create(options);
-    this.client.interceptors.response.use(
-      this.handleSuccessResponse,
-      this.handleErrorResponse
-    );
+    this.client.interceptors.response.use(this.handleSuccessResponse, this.handleErrorResponse);
     this.unauthorizedCallback = () => {};
   }
 
@@ -56,6 +55,7 @@ class HttpService {
 const options = {
   // baseURL: config.API_BASE_URL
   baseURL: 'http://127.0.0.1:8000/api'
+  // baseURL: 'https://onlinementor-office.com/api'
 };
 const httpService = new HttpService(options);
 

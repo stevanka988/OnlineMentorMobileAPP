@@ -2,6 +2,8 @@ import { call, put } from 'redux-saga/effects';
 import { setLoader } from '../actions/LoaderAction';
 import authService from '../../services/AuthService';
 import NavigationService from '../../services/NavigationService';
+import * as RootNavigation from '../../services/RootNavigation';
+
 import {
   setSignInError,
   setGlobalError,
@@ -11,11 +13,7 @@ import {
   setResetPasswordError,
   setSocialLoginError
 } from '../actions/ErrorActions';
-import {
-  setUser,
-  setChangePasswordSuccess,
-  setUpdatedUser
-} from '../actions/UserActions';
+import { setUser, setChangePasswordSuccess, setUpdatedUser } from '../actions/UserActions';
 import { profileService } from '../../services/ProfileService';
 
 export function* userLogin({ payload }) {
@@ -24,14 +22,12 @@ export function* userLogin({ payload }) {
     yield put(setLoader(true));
     payload.credentials.userType = payload.userType;
     yield call(authService.login, payload.credentials);
-    NavigationService.navigate('AuthLoading');
+    // RootNavigation.navigate('AuthLoading', { screen: 'Settings' });
   } catch (error) {
     if (error.response.status === 401) {
       yield put(setSignInError(true));
     } else {
-      yield put(
-        setGlobalError({ bool: true, message: error.response.data.message })
-      );
+      yield put(setGlobalError({ bool: true, message: error.response.data.message }));
     }
   } finally {
     yield put(setLoader(false));
@@ -48,9 +44,7 @@ export function* userFacebookLogin() {
       if (error.response.status === 422) {
         yield put(setSocialLoginError(error.response.data.error));
       } else {
-        yield put(
-          setGlobalError({ bool: true, message: error.response.data.message })
-        );
+        yield put(setGlobalError({ bool: true, message: error.response.data.message }));
       }
     }
   } finally {
@@ -68,9 +62,7 @@ export function* userGoogleLogin() {
       if (error.response.status === 422) {
         yield put(setSocialLoginError(error.response.data.error));
       } else {
-        yield put(
-          setGlobalError({ bool: true, message: error.response.data.message })
-        );
+        yield put(setGlobalError({ bool: true, message: error.response.data.message }));
       }
     }
   } finally {
@@ -97,9 +89,7 @@ export function* userSignUp({ payload }) {
     } else if (error.response.status === 401) {
       yield put(setSignInError(true));
     } else {
-      yield put(
-        setGlobalError({ bool: true, message: error.response.data.message })
-      );
+      yield put(setGlobalError({ bool: true, message: error.response.data.message }));
     }
   } finally {
     yield put(setLoader(false));
@@ -110,7 +100,7 @@ export function* userLogout() {
   try {
     yield put(setLoader(true));
     yield call(authService.logout);
-    NavigationService.navigate('AuthLoading');
+    RootNavigation.navigate('AuthLoading');
   } catch (error) {
     console.log(error); /*eslint-disable-line*/
   } finally {
@@ -129,9 +119,7 @@ export function* forgotPassword({ payload }) {
     if (error.response.status === 401) {
       yield put(setForgotPasswordError(true));
     } else {
-      yield put(
-        setGlobalError({ bool: true, message: error.response.data.message })
-      );
+      yield put(setGlobalError({ bool: true, message: error.response.data.message }));
     }
   } finally {
     yield put(setLoader(false));
@@ -147,9 +135,7 @@ export function* resetPassword({ payload }) {
     if (error.response.status === 422) {
       yield put(setResetPasswordError(true));
     } else {
-      yield put(
-        setGlobalError({ bool: true, message: error.response.data.message })
-      );
+      yield put(setGlobalError({ bool: true, message: error.response.data.message }));
     }
   } finally {
     yield put(setLoader(false));
@@ -162,9 +148,7 @@ export function* userGet() {
     const { data } = yield call(profileService.getProfile);
     yield put(setUser(data));
   } catch (error) {
-    yield put(
-      setGlobalError({ bool: true, message: error.response.data.message })
-    );
+    yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   } finally {
     yield put(setLoader(false));
   }
@@ -180,9 +164,7 @@ export function* passwordChange({ payload }) {
     if (error.response.status === 422) {
       yield put(changePasswordError(true));
     } else {
-      yield put(
-        setGlobalError({ bool: true, message: error.response.data.message })
-      );
+      yield put(setGlobalError({ bool: true, message: error.response.data.message }));
     }
   } finally {
     yield put(setLoader(false));
@@ -196,9 +178,7 @@ export function* updateUser({ payload }) {
     yield put(setUpdatedUser(data));
     NavigationService.goBack();
   } catch (error) {
-    yield put(
-      setGlobalError({ bool: true, message: error.response.data.message })
-    );
+    yield put(setGlobalError({ bool: true, message: error.response.data.message }));
   } finally {
     yield put(setLoader(false));
   }

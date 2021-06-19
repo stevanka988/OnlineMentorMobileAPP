@@ -7,7 +7,8 @@ import {
   ASSIGN_TEMPLATE_TO_CLIENT,
   UNASSIGN_TEMPLATE_TO_CLIENT,
   GET_TEMPLATES,
-  SET_CLIENT_TEMPLATES
+  SET_CLIENT_TEMPLATES,
+  TEMPLATE_INIT_DATA
 } from '../actionTypes/TemplateActionTypes';
 
 export const fetchTemplates = () => ({
@@ -52,4 +53,8 @@ export const assignTemplateToClient = payload => ({
 export const unassignTemplateToClient = payload => ({
   type: UNASSIGN_TEMPLATE_TO_CLIENT,
   payload
+});
+
+export const templateInitialData = () => ({
+  type: TEMPLATE_INIT_DATA
 });

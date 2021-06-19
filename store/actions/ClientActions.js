@@ -5,7 +5,8 @@ import {
   GET_CLIENT,
   SET_CLIENT,
   ADD_CLIENT,
-  DELETE_CLIENT
+  DELETE_CLIENT,
+  CLIENT_INIT_DATA
 } from '../actionTypes/ClientActionTypes';
 
 export const fetchClients = () => ({
@@ -40,4 +41,8 @@ export const addClient = payload => ({
 export const deleteClient = payload => ({
   type: DELETE_CLIENT,
   payload
+});
+
+export const clientInitialData = () => ({
+  type: CLIENT_INIT_DATA
 });

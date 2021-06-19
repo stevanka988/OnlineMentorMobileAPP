@@ -19,10 +19,10 @@ import TemplateMealRecipeModal from '../../../../components/shared/modal/Templat
 import AssignToClientModal from '../../../../components/shared/modal/AssignToClientModal';
 import { assignTemplateToClient } from '../../../../store/actions/TemplateActions';
 
-const TemplateMealScreenTrainer = ({ navigation }) => {
+const TemplateMealScreenTrainer = ({ route }) => {
   const dispatch = useDispatch();
 
-  const templateProps = navigation.state.params.template;
+  const templateProps = route.params.template;
 
   const [isCreateEditModalVisible, setIsCreateEditModalVisible] = useState(false);
   const [isCreateMealModalVisible, setIsCreateMealModalVisible] = useState(false);
@@ -124,7 +124,7 @@ TemplateMealScreenTrainer.navigationOptions = {
 };
 
 TemplateMealScreenTrainer.propTypes = {
-  navigation: PropTypes.object
+  route: PropTypes.object
 };
 
 const styles = StyleSheet.create({

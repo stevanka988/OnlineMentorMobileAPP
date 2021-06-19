@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity
-} from 'react-native';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import * as Icon from '@expo/vector-icons';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,12 +8,26 @@ import $t from 'i18n';
 import IconName from '../../constants/IconName';
 import Colors from '../../constants/Colors';
 import { logout } from '../../store/actions/UserActions';
+import { clientInitialData } from '../../store/actions/ClientActions';
+import { dailyMealInitialData } from '../../store/actions/DailyPlanActions';
+import { galleryInitialData } from '../../store/actions/GalleryActions';
+import { resetGoal } from '../../store/actions/GoalActions';
+import { templateMealInitialData } from '../../store/actions/TemplateMealActions';
+import { templateInitialData } from '../../store/actions/TemplateActions';
+import { trainerInitialData } from '../../store/actions/TrainerActions';
 
 const OptionClientSliderComp = () => {
   const dispatch = useDispatch();
 
   const _signOutAsync = async () => {
     dispatch(logout());
+    dispatch(clientInitialData());
+    dispatch(dailyMealInitialData());
+    dispatch(galleryInitialData());
+    dispatch(resetGoal());
+    dispatch(templateMealInitialData());
+    dispatch(templateInitialData());
+    dispatch(trainerInitialData());
   };
 
   return (

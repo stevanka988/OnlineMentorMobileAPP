@@ -2,6 +2,7 @@ import React, { useEffect, useCallback } from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { signUp } from '../../store/actions/UserActions';
 import { setSignUpErrors } from '../../store/actions/ErrorActions';
@@ -13,13 +14,15 @@ import SharedGoBackButtonAuth from '../../components/shared/SharedGoBackButtonAu
 import SharedLinearGradientBackgroundVertical from '../../components/shared/SharedLinearGradientBackgroundVertical';
 import Colors from '../../constants/Colors';
 
-const GuestSignUpScreen = () => {
+const GuestSignUpScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const handleSignUp = useCallback(data => dispatch(signUp({ credentials: data, userType: 2 })));
   const handleSetSignUpErrors = data => dispatch(setSignUpErrors(data));
 
   const signUpErrors = useSelector(signUpErrorsSelector());
+
+  const goBack = () => navigation.goBack();
 
   useEffect(() => {
     return () => handleSetSignUpErrors({});
@@ -39,7 +42,7 @@ const GuestSignUpScreen = () => {
           <LoginHeader />
           <SignUpForm onSubmit={handleSignUp} signUpErrors={signUpErrors} />
         </KeyboardAwareScrollView>
-        <SharedGoBackButtonAuth />
+        <SharedGoBackButtonAuth goBack={goBack} />
       </SafeAreaView>
       <GuestMessage />
     </SharedLinearGradientBackgroundVertical>
@@ -48,6 +51,10 @@ const GuestSignUpScreen = () => {
 
 GuestSignUpScreen.navigationOptions = {
   header: null
+};
+
+GuestSignUpScreen.propTypes = {
+  navigation: PropTypes.object
 };
 
 export default GuestSignUpScreen;

@@ -3,7 +3,8 @@ import {
   SET_GROCERIES,
   SET_IMPORTED_GROCERIES,
   CLEAR_IMPORTED_GROCERIES,
-  UPDATE_IMPORTED_GROCERIES
+  UPDATE_IMPORTED_GROCERIES,
+  GROCERY_INIT_DATA
 } from '../actionTypes/GroceriesActionTypes';
 
 const initialState = {
@@ -19,7 +20,6 @@ export default (state = initialState, action) =>
         draft.groceries = action.payload;
         break;
       case SET_IMPORTED_GROCERIES:
-        // console.log('123', action.payload);
         draft.importedGrocery = [...draft.importedGrocery, action.payload];
         break;
       case UPDATE_IMPORTED_GROCERIES:
@@ -28,5 +28,7 @@ export default (state = initialState, action) =>
       case CLEAR_IMPORTED_GROCERIES:
         draft.importedGrocery = [];
         break;
+      case GROCERY_INIT_DATA:
+        return initialState;
     }
   });

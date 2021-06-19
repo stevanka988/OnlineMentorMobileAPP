@@ -27,14 +27,14 @@ import AddMealModal from '../../../../components/shared/modal/AddMealModal';
 import { requiredFieldsValidation } from '../../../../helpers/RequiredFieldsValidation';
 import { setInputFealdError } from '../../../../store/actions/ErrorActions';
 
-const DailyMealsScreenTrainer = ({ navigation }) => {
+const DailyMealsScreenTrainer = ({ route }) => {
   const dispatch = useDispatch();
 
   const dailyMealList = useSelector(dailyMealListSelector());
   const importedGroceryList = useSelector(importedGroceryListSelector());
 
-  const client = navigation.state.params.client;
-  const date = navigation.state.params.date;
+  const client = route.params.client;
+  const date = route.params.date;
 
   const [mealText, setMealText] = useState('');
   const [screen, setScreen] = useState('create');
@@ -206,7 +206,7 @@ DailyMealsScreenTrainer.navigationOptions = {
 };
 
 DailyMealsScreenTrainer.propTypes = {
-  navigation: PropTypes.object
+  route: PropTypes.object
 };
 
 const styles = StyleSheet.create({

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View, YellowBox } from 'react-native';
-import { AppLoading } from 'expo';
+import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import * as Font from 'expo-font';
 import * as Icon from '@expo/vector-icons';
@@ -8,11 +8,15 @@ import Sentry from 'sentry-expo';
 import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { InAppNotificationProvider } from 'react-native-in-app-notification';
+import { NavigationContainer } from '@react-navigation/native';
+// import TrainerMainTabNavigator from './navigation/TrainerMainTabNavigator';
+// import AuthNavigator from './navigation/AuthNavigator';
 
 import store from './store';
-import NavigationService from './services/NavigationService';
+// import NavigationService from './services/NavigationService';
 import AppNavigator from './navigation/AppNavigator';
 import NetworkInterceptor from './screens/NetworkInterceptor';
+import { navigationRef } from './services/RootNavigation';
 
 if (!__DEV__) {
   // TODO replace key, and project with variables from ENV file
@@ -48,14 +52,14 @@ export default class App extends React.Component {
           <InAppNotificationProvider height={150}>
             <NetworkInterceptor>
               <View style={styles.container}>
-                {Platform.OS === 'ios' && (
-                  <StatusBar barStyle="light-content" />
-                )}
-                <AppNavigator
-                  ref={navigatorRef => {
-                    NavigationService.setTopLevelNavigator(navigatorRef);
-                  }}
-                />
+                {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />}
+                <NavigationContainer ref={navigationRef}>
+                  <AppNavigator
+                  // ref={navigatorRef => {
+                  //   NavigationService.setTopLevelNavigator(navigatorRef);
+                  // }}
+                  />
+                </NavigationContainer>
               </View>
             </NetworkInterceptor>
           </InAppNotificationProvider>

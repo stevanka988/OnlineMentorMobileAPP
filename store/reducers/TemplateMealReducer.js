@@ -3,7 +3,8 @@ import {
   SET_TEMPLATE_MEALS,
   SET_TEMPLATE_MEAL_RECIPIES,
   CLEAR_TEMPLATE_MEAL_RECIPIES,
-  CLEAR_TEMPLATE_MEALS
+  CLEAR_TEMPLATE_MEALS,
+  TEMPLATE_MEAL_INIT_DATA
 } from '../actionTypes/TemplateMealActionTypes';
 
 const initialState = {
@@ -33,5 +34,7 @@ export default (state = initialState, action) =>
       case CLEAR_TEMPLATE_MEALS:
         draft.templateMeals = [];
         break;
+      case TEMPLATE_MEAL_INIT_DATA:
+        return initialState;
     }
   });

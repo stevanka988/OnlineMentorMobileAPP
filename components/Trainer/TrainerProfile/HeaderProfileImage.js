@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 30
+    paddingBottom: 30
   },
   headerText: {
     color: Colors.lightGray,

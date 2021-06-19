@@ -17,7 +17,7 @@ const GroceryList = ({
   renderListGroceries,
   handleChooseGrocery,
   showSharedCreateEditModal,
-  showDeleteModal
+  handleDeleteGrocery
 }) => {
   const optionValue = ['Edit', 'Delete'];
   const [choosedItem, setChoosedItem] = useState([]);
@@ -39,7 +39,7 @@ const GroceryList = ({
         setChoosedItem([]);
         break;
       case 'delete':
-        showDeleteModal(item);
+        handleDeleteGrocery(item);
         break;
     }
   };
@@ -163,7 +163,7 @@ GroceryList.propTypes = {
   handleChooseGrocery: PropTypes.func,
   showSharedCreateEditModal: PropTypes.func,
   deleteGrocery: PropTypes.func,
-  showDeleteModal: PropTypes.func
+  handleDeleteGrocery: PropTypes.func
 };
 
 const styles = StyleSheet.create({

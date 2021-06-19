@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -12,8 +12,9 @@ import StandardNotificationModal from '../../../../components/shared/modal/Stand
 import { showStandardPopUpSelector } from '../../../../store/selectors/ErrorSelector';
 import SharedLinearGradientBackgroundHorizontal from '../../../../components/shared/SharedLinearGradientBackgroundHorizontal';
 import Colors from '../../../../constants/Colors';
+import SharedGoBackButtonAuth from '../../../../components/shared/SharedGoBackButtonAuth';
 
-const EditProfileScreen = () => {
+const EditProfileScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const [photoUrl, setPhotoUrl] = useState(null);
 
@@ -26,6 +27,8 @@ const EditProfileScreen = () => {
     dispatch(updateTrainer(updateUserData));
   };
 
+  const goBack = () => navigation.goBack();
+
   return (
     <SharedLinearGradientBackgroundHorizontal
       childrenColors={[
@@ -35,13 +38,14 @@ const EditProfileScreen = () => {
       ]}
       childrenStyle={styles.gradientBackground}
     >
-      <View style={styles.container}>
+      <SafeAreaView>
         <StandardNotificationModal visible={isStandardModalVisible} />
+        <SharedGoBackButtonAuth goBack={goBack} />
         <KeyboardAwareScrollView enableOnAndroid>
           <HeaderProfileImage trainer={trainer} setProfileImageUrl={image => setPhotoUrl(image)} />
           <UpdateTrainerForm onSubmit={handleSubmit} trainer={trainer} />
         </KeyboardAwareScrollView>
-      </View>
+      </SafeAreaView>
     </SharedLinearGradientBackgroundHorizontal>
   );
 };
@@ -53,9 +57,6 @@ EditProfileScreen.propTypes = {
 export default EditProfileScreen;
 
 const styles = StyleSheet.create({
-  container: {
-    // paddingHorizontal: 20
-  },
   gradientBackground: {
     flex: 1
   }

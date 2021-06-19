@@ -5,7 +5,8 @@ import {
   ADD_DAILY_MEAL_RECIPE,
   UPDATE_DAILY_MEAL_RECIPE,
   REMOVE_DAILY_MEAL,
-  REMOVE_DAILY_MEAL_RECIPE
+  REMOVE_DAILY_MEAL_RECIPE,
+  DAILY_MEAL_INIT_DATA
 } from '../actionTypes/DailyPlanActionTypes';
 
 export const fetchDailyMeals = payload => ({
@@ -41,4 +42,8 @@ export const updateDailyMealRecipe = payload => ({
 export const removeDailyMealRecipe = payload => ({
   type: REMOVE_DAILY_MEAL_RECIPE,
   payload
+});
+
+export const dailyMealInitialData = () => ({
+  type: DAILY_MEAL_INIT_DATA
 });

@@ -8,11 +8,31 @@ import $t from 'i18n';
 import IconName from '../../constants/IconName';
 import Colors from '../../constants/Colors';
 import { logout } from '../../store/actions/UserActions';
+import { clientInitialData } from '../../store/actions/ClientActions';
+import { dailyMealInitialData } from '../../store/actions/DailyPlanActions';
+import { galleryInitialData } from '../../store/actions/GalleryActions';
+import { resetGoal } from '../../store/actions/GoalActions';
+import { groceryInitialData } from '../../store/actions/GroceriesActions';
+import { recipeInitialData } from '../../store/actions/RecipeActions';
+import { templateMealInitialData } from '../../store/actions/TemplateMealActions';
+import { templateInitialData } from '../../store/actions/TemplateActions';
+import { trainerInitialData } from '../../store/actions/TrainerActions';
 
 const OptionTrainerSliderComp = ({ navigation }) => {
   const dispatch = useDispatch();
 
-  const _signOutAsync = async () => dispatch(logout());
+  const _signOutAsync = async () => {
+    dispatch(logout());
+    dispatch(clientInitialData());
+    dispatch(dailyMealInitialData());
+    dispatch(galleryInitialData());
+    dispatch(resetGoal());
+    dispatch(groceryInitialData());
+    dispatch(recipeInitialData());
+    dispatch(templateMealInitialData());
+    dispatch(templateInitialData());
+    dispatch(trainerInitialData());
+  };
 
   return (
     <>

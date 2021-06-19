@@ -24,13 +24,9 @@ const SignInScreen = ({ navigation }) => {
 
   const signInError = useSelector(signInErrorSelector());
 
-  const goToForgotPassword = () => {
-    navigation.navigate('ForgotPassword');
-  };
+  const goToForgotPassword = () => navigation.navigate('ForgotPassword');
 
-  const goToSignInScreen = () => {
-    navigation.navigate('SignUp');
-  };
+  const goToSignInScreen = () => navigation.navigate('SignUp');
 
   return (
     <SharedLinearGradientBackgroundVertical
@@ -44,9 +40,7 @@ const SignInScreen = ({ navigation }) => {
       <SafeAreaView>
         <KeyboardAwareScrollView enableOnAndroid>
           <LoginHeader />
-          <SharedTrainerClientChooseButton
-            userType={value => setSelected(value)}
-          />
+          <SharedTrainerClientChooseButton userType={value => setSelected(value)} />
           <SignInForm
             onSubmit={handleLogin}
             signInError={signInError}
@@ -61,10 +55,6 @@ const SignInScreen = ({ navigation }) => {
 
 SignInScreen.propTypes = {
   navigation: PropTypes.object
-};
-
-SignInScreen.navigationOptions = {
-  header: null
 };
 
 export default SignInScreen;

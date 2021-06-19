@@ -1,13 +1,16 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import CalendarPicker from 'react-native-calendar-picker';
 import moment from 'moment';
 import Colors from '../../constants/Colors';
 import NavigationService from '../../services/NavigationService';
+import RootNavigation from '../../services/RootNavigation';
 
-const SharedClientDailyPlan = () => {
+const SharedClientDailyPlan = ({ navigation }) => {
   const onDateChange = date =>
-    NavigationService.navigate('SelectedClientDailyPlanScreen', {
+    navigation.navigate('SelectedClientDailyPlanScreen', {
       date: moment(date)
         .format('ll')
         .toString()

@@ -6,7 +6,8 @@ import {
   DELETE_GROCERIES,
   SET_IMPORTED_GROCERIES,
   CLEAR_IMPORTED_GROCERIES,
-  UPDATE_IMPORTED_GROCERIES
+  UPDATE_IMPORTED_GROCERIES,
+  GROCERY_INIT_DATA
 } from '../actionTypes/GroceriesActionTypes';
 
 export const fetchGroceries = () => ({
@@ -45,4 +46,8 @@ export const updateGroceries = payload => ({
 export const deleteGroceries = payload => ({
   type: DELETE_GROCERIES,
   payload
+});
+
+export const groceryInitialData = () => ({
+  type: GROCERY_INIT_DATA
 });

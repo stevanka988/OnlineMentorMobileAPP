@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useCallback, useState } from 'react';
 import {
   StyleSheet,
@@ -7,7 +8,8 @@ import {
   TextInput,
   Image,
   FlatList,
-  ImageBackground
+  ImageBackground,
+  AsyncStorage
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import $t from 'i18n';
@@ -40,6 +42,8 @@ const WelcomeScreen = () => {
 
   const viewHeight = 490;
 
+  // AsyncStorage.clear();
+
   useEffect(() => {
     dispatch(fetchClients());
   }, []);
@@ -66,9 +70,7 @@ const WelcomeScreen = () => {
     dispatch(setShowDeletePopUp('Delete Client ?'));
   };
 
-  const handleDeleteClient = () => {
-    dispatch(deleteClient(choosedClient.id));
-  };
+  const handleDeleteClient = () => dispatch(deleteClient(choosedClient.id));
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -154,16 +156,6 @@ const WelcomeScreen = () => {
       />
     </ImageBackground>
   );
-};
-
-WelcomeScreen.navigationOptions = ({ navigation }) => {
-  const headerRightNav = addHeaderRightNavigator(navigation);
-  return {
-    ...headerRightNav,
-    headerStyle: HeaderBarStyle,
-    headerTitleStyle: { color: Colors.white, fontFamily: 'montserrat-bold' },
-    title: 'Client List'
-  };
 };
 
 export default WelcomeScreen;

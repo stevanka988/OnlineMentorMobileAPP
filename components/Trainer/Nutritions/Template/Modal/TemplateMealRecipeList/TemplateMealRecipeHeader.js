@@ -8,22 +8,26 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import * as Icon from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import PropTypes from 'prop-types';
-import ModalDropdown from 'react-native-modal-dropdown';
+// import ModalDropdown from 'react-native-modal-dropdown';
 
 import clientTemplateSmall from '../../../../../../assets/images/clientTemplateSmall.jpg';
 import IconName from '../../../../../../constants/IconName';
 import Colors from '../../../../../../constants/Colors';
 import { templateMealListSelector } from '../../../../../../store/selectors/TemplateMealSelector';
-import { deleteTemplateMeal } from '../../../../../../store/actions/TemplateMealActions';
+// import { deleteTemplateMeal } from '../../../../../../store/actions/TemplateMealActions';
 
-const TemplateMealRecipeHeader = ({ closeModal, choosedMeal, showEditMealModal }) => {
-  const dispatch = useDispatch();
+const TemplateMealRecipeHeader = ({
+  closeModal,
+  choosedMeal
+  // showEditMealModal
+}) => {
+  // const dispatch = useDispatch();
 
-  const optionValue = ['Edit', 'Delete'];
+  // const optionValue = ['Edit', 'Delete'];
 
   const [mealName, setMealName] = useState('');
   const [mealDescription, setMealDescription] = useState('');
@@ -39,21 +43,21 @@ const TemplateMealRecipeHeader = ({ closeModal, choosedMeal, showEditMealModal }
     [templateMeals]
   );
 
-  const handleDropdownPicker = value => {
-    switch (value) {
-      case '0':
-        showEditMealModal();
-        break;
-      case '1':
-        closeModal();
-        dispatch(
-          deleteTemplateMeal({
-            templateMealId: choosedMeal.id
-          })
-        );
-        break;
-    }
-  };
+  // const handleDropdownPicker = value => {
+  //   switch (value) {
+  //     case '0':
+  //       showEditMealModal();
+  //       break;
+  //     case '1':
+  //       closeModal();
+  //       dispatch(
+  //         deleteTemplateMeal({
+  //           templateMealId: choosedMeal.id
+  //         })
+  //       );
+  //       break;
+  //   }
+  // };
 
   // <Text style={styles.nameText}>{mealName}</Text>
 
@@ -64,7 +68,7 @@ const TemplateMealRecipeHeader = ({ closeModal, choosedMeal, showEditMealModal }
           <Icon.Ionicons name={IconName.goBack} size={30} color={Colors.light} />
         </TouchableOpacity>
         <TouchableOpacity style={styles.headerDotsIconWrapper}>
-          <ModalDropdown
+          {/* <ModalDropdown
             defaultIndex={0}
             options={optionValue}
             onSelect={text => handleDropdownPicker(text)}
@@ -78,7 +82,7 @@ const TemplateMealRecipeHeader = ({ closeModal, choosedMeal, showEditMealModal }
               size={30}
               style={styles.optionIcon}
             />
-          </ModalDropdown>
+          </ModalDropdown> */}
         </TouchableOpacity>
         <Text style={styles.nameText}>{mealName}</Text>
 
@@ -125,21 +129,21 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%'
   },
-  dropdownStyle: {
-    backgroundColor: 'transparent',
-    borderWidth: 0,
-    width: 140
-  },
-  dropdownTextHighlightStyle: {
-    backgroundColor: Colors.light,
-    color: Colors.backgroundAppColor
-  },
-  dropdownTextStyle: {
-    backgroundColor: Colors.light,
-    color: Colors.backgroundAppColor,
-    fontSize: 15,
-    fontWeight: 'bold'
-  },
+  // dropdownStyle: {
+  //   backgroundColor: 'transparent',
+  //   borderWidth: 0,
+  //   width: 140
+  // },
+  // dropdownTextHighlightStyle: {
+  //   backgroundColor: Colors.light,
+  //   color: Colors.backgroundAppColor
+  // },
+  // dropdownTextStyle: {
+  //   backgroundColor: Colors.light,
+  //   color: Colors.backgroundAppColor,
+  //   fontSize: 15,
+  //   fontWeight: 'bold'
+  // },
   goBackIconWrapper: {
     left: 10,
     paddingHorizontal: 10,

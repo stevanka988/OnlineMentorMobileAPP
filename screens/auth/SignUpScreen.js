@@ -2,13 +2,13 @@ import React, { useEffect, useCallback, useState } from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useDispatch, useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { signUp } from '../../store/actions/UserActions';
 import { setSignUpErrors } from '../../store/actions/ErrorActions';
 import { SignUpForm } from '../../components/auth/SignUpForm';
 import { signUpErrorsSelector } from '../../store/selectors/ErrorSelector';
 import LoginHeader from '../../components/auth/Login/LoginHeader';
-import NavigationService from '../../services/NavigationService';
 import SharedTrainerClientChooseButton from '../../components/shared/SharedTrainerClientChooseButton';
 import ClientMessageRegister from '../../components/auth/Register/ClientMessageRegister';
 import GuestRegisterButton from '../../components/auth/Register/GuestRegisterButton';
@@ -16,7 +16,7 @@ import SharedGoBackButtonAuth from '../../components/shared/SharedGoBackButtonAu
 import SharedLinearGradientBackgroundVertical from '../../components/shared/SharedLinearGradientBackgroundVertical';
 import Colors from '../../constants/Colors';
 
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const [selected, setSelected] = useState(0);
@@ -28,7 +28,8 @@ const SignUpScreen = () => {
 
   const signUpErrors = useSelector(signUpErrorsSelector());
 
-  const goToGuestRegister = () => NavigationService.navigate('GuestSignUp');
+  const goToGuestRegister = () => navigation.navigate('GuestSignUp');
+  const goBack = () => navigation.goBack();
 
   useEffect(() => {
     return () => handleSetSignUpErrors({});
@@ -53,15 +54,19 @@ const SignUpScreen = () => {
             <ClientMessageRegister />
           )}
         </KeyboardAwareScrollView>
-        <SharedGoBackButtonAuth />
+        <SharedGoBackButtonAuth goBack={goBack} />
       </SafeAreaView>
-      <GuestRegisterButton goToGuestRegister={() => goToGuestRegister()} />
+      <GuestRegisterButton goToGuestRegister={goToGuestRegister} />
     </SharedLinearGradientBackgroundVertical>
   );
 };
 
 SignUpScreen.navigationOptions = {
   header: null
+};
+
+SignUpScreen.propTypes = {
+  navigation: PropTypes.object
 };
 
 export default SignUpScreen;

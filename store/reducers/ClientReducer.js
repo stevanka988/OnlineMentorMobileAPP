@@ -1,5 +1,5 @@
 import produce from 'immer';
-import { SET_CLIENT_LIST, SET_CLIENT } from '../actionTypes/ClientActionTypes';
+import { SET_CLIENT_LIST, SET_CLIENT, CLIENT_INIT_DATA } from '../actionTypes/ClientActionTypes';
 
 const initialState = {
   clientList: [],
@@ -16,5 +16,7 @@ export default (state = initialState, action) =>
       case SET_CLIENT:
         draft.currentClient = action.payload;
         break;
+      case CLIENT_INIT_DATA:
+        return initialState;
     }
   });

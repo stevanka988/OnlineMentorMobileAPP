@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, View, StyleSheet, StatusBar } from 'react-native';
+import {
+  ActivityIndicator,
+  View,
+  StyleSheet,
+  StatusBar
+  // AsyncStorage
+} from 'react-native';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -17,6 +23,7 @@ const AuthLoadingScreen = ({ navigation }) => {
 
   useEffect(() => {
     bootstrapAsync();
+    // await AsyncStorage.clear();
   }, []);
 
   useEffect(
@@ -37,6 +44,7 @@ const AuthLoadingScreen = ({ navigation }) => {
       handleSetActiveUser(user);
     } else {
       navigation.navigate('AuthStack');
+      // navigation.navigate('TrainerMainStack');
     }
 
     // This will switch to the Main screen or Auth screen and this loading

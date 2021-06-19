@@ -9,7 +9,7 @@ import {
   ScrollView
 } from 'react-native';
 import * as Icon from '@expo/vector-icons';
-import ModalDropdown from 'react-native-modal-dropdown';
+// import ModalDropdown from 'react-native-modal-dropdown';
 import Constants from 'expo-constants';
 import PropTypes from 'prop-types';
 
@@ -17,40 +17,40 @@ import clientTemplateSmall from '../../../../assets/images/clientTemplateSmall.j
 import NavigationService from '../../../../services/NavigationService';
 import IconName from '../../../../constants/IconName';
 import Colors from '../../../../constants/Colors';
-import { useDispatch } from 'react-redux';
-import { deleteTemplate } from '../../../../store/actions/TemplateActions';
+// import { useDispatch } from 'react-redux';
+// import { deleteTemplate } from '../../../../store/actions/TemplateActions';
 
 const TemplateMealHeader = ({
-  showCreateEditModal,
-  showCreateMealModal,
-  showAssignToClientModal,
+  // showCreateEditModal,
+  // showCreateMealModal,
+  // showAssignToClientModal,
   template
 }) => {
-  const dispatch = useDispatch();
-  const optionValue = ['Assign to client', 'Add Meal', 'Edit', 'Delete'];
+  // const dispatch = useDispatch();
+  // const optionValue = ['Assign to client', 'Add Meal', 'Edit', 'Delete'];
 
-  const handleDropdownPicker = value => {
-    switch (value) {
-      case '0':
-        // console.log('assign');
-        showAssignToClientModal();
-        break;
-      case '1':
-        showCreateMealModal();
-        break;
-      case '2':
-        showCreateEditModal();
-        break;
-      case '3':
-        dispatch(
-          deleteTemplate({
-            id: template.id
-          })
-        );
-        NavigationService.goBack();
-        break;
-    }
-  };
+  // const handleDropdownPicker = value => {
+  //   switch (value) {
+  //     case '0':
+  //       // console.log('assign');
+  //       showAssignToClientModal();
+  //       break;
+  //     case '1':
+  //       showCreateMealModal();
+  //       break;
+  //     case '2':
+  //       showCreateEditModal();
+  //       break;
+  //     case '3':
+  //       dispatch(
+  //         deleteTemplate({
+  //           id: template.id
+  //         })
+  //       );
+  //       NavigationService.goBack();
+  //       break;
+  //   }
+  // };
 
   return (
     <View style={styles.headerWrapper}>
@@ -70,7 +70,7 @@ const TemplateMealHeader = ({
             <Icon.Ionicons name={IconName.goBack} size={30} color={Colors.light} />
           </TouchableOpacity>
           <TouchableOpacity style={styles.headerDotsIconWrapper}>
-            <ModalDropdown
+            {/* <ModalDropdown
               defaultIndex={0}
               options={optionValue}
               onSelect={text => handleDropdownPicker(text)}
@@ -83,7 +83,7 @@ const TemplateMealHeader = ({
                 color={Colors.light}
                 size={30}
               />
-            </ModalDropdown>
+            </ModalDropdown> */}
           </TouchableOpacity>
           <View style={styles.detailWrapper}>
             <Text style={styles.nameText}>{template && template.name}</Text>
@@ -130,21 +130,21 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%'
   },
-  dropdownStyle: {
-    backgroundColor: 'transparent',
-    borderWidth: 0,
-    width: 160
-  },
-  dropdownTextHighlightStyle: {
-    backgroundColor: Colors.light,
-    color: Colors.backgroundAppColor
-  },
-  dropdownTextStyle: {
-    backgroundColor: Colors.light,
-    color: Colors.backgroundAppColor,
-    fontSize: 15,
-    fontWeight: 'bold'
-  },
+  // dropdownStyle: {
+  //   backgroundColor: 'transparent',
+  //   borderWidth: 0,
+  //   width: 160
+  // },
+  // dropdownTextHighlightStyle: {
+  //   backgroundColor: Colors.light,
+  //   color: Colors.backgroundAppColor
+  // },
+  // dropdownTextStyle: {
+  //   backgroundColor: Colors.light,
+  //   color: Colors.backgroundAppColor,
+  //   fontSize: 15,
+  //   fontWeight: 'bold'
+  // },
   goBackIconWrapper: {
     left: 10,
     paddingHorizontal: 10,

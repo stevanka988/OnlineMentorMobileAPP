@@ -5,3 +5,4 @@ export const GET_CLIENT = 'GET_CLIENT';
 export const SET_CLIENT = 'SET_CLIENT';
 export const ADD_CLIENT = 'ADD_CLIENT';
 export const DELETE_CLIENT = 'DELETE_CLIENT';
+export const CLIENT_INIT_DATA = 'CLIENT_INIT_DATA';

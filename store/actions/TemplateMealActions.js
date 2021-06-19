@@ -11,7 +11,8 @@ import {
   SET_TEMPLATE_MEAL_RECIPIES,
   CLEAR_TEMPLATE_MEAL_RECIPIES,
   CHANGE_TEMPLATE_MEAL_ORDER,
-  CLEAR_TEMPLATE_MEALS
+  CLEAR_TEMPLATE_MEALS,
+  TEMPLATE_MEAL_INIT_DATA
 } from '../actionTypes/TemplateMealActionTypes';
 
 export const fetchTemplateMeals = () => ({
@@ -76,7 +77,6 @@ export const changeTemplateMealOrder = payload => ({
   payload
 });
 
-//   export const deleteTemplate = payload => ({
-//     type: DELETE_TEMPLATE,
-//     payload
-//   });
+export const templateMealInitialData = () => ({
+  type: TEMPLATE_MEAL_INIT_DATA
+});

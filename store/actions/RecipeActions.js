@@ -5,7 +5,8 @@ import {
   FETCH_RECIPE,
   SET_RECIPIES,
   DELETE_RECIPE,
-  UPDATE_RECIPE
+  UPDATE_RECIPE,
+  RECIPE_INIT_DATA
 } from '../actionTypes/RecipeActionTypes';
 
 export const getRecipeTypes = () => ({
@@ -39,4 +40,8 @@ export const updateRecipe = payload => ({
 export const deleteRecipe = payload => ({
   type: DELETE_RECIPE,
   payload
+});
+
+export const recipeInitialData = () => ({
+  type: RECIPE_INIT_DATA
 });

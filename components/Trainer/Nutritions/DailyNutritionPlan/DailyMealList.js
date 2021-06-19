@@ -10,9 +10,7 @@ import breakfast from '../../../../assets/images/breakfast.jpg';
 import dinner from '../../../../assets/images/dinner.jpg';
 import lunch from '../../../../assets/images/lunch.png';
 import ShadowStyleLow from '../../../../constants/ShadowStyleLow';
-import { showDeletePopUpSelector } from '../../../../store/selectors/ErrorSelector';
 import { loaderSelector } from '../../../../store/selectors/LoaderSelector';
-import SharedDeleteModal from '../../../shared/modal/SharedDeleteModal';
 import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLinearGradientBackgroundHorizontal';
 import { sumRecipeGrocery } from '../../../../helpers/SumRecipeGrocery';
 import IconName from '../../../../constants/IconName';
@@ -32,7 +30,6 @@ const DailyMealList = ({
   const optionValue = ['Edit', 'Delete'];
   let image = [breakfast, lunch, dinner];
 
-  const isDeleteModalVisible = useSelector(showDeletePopUpSelector());
   const isLoader = useSelector(loaderSelector());
 
   const handleDropdownPicker = (value, item) => {
@@ -56,7 +53,6 @@ const DailyMealList = ({
     <>
       {recipes && recipes.daily_meal_recipes.length ? (
         <ScrollView style={styles.container}>
-          <SharedDeleteModal isVisible={isDeleteModalVisible} />
           {recipes.daily_meal_recipes.map((recipe, index) => (
             <TouchableOpacity
               key={index}

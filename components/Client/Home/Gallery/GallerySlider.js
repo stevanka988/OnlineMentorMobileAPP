@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Icon from '@expo/vector-icons';
@@ -10,28 +10,16 @@ import avatar from '../../../../assets/images/richFroning.jpg';
 import IconName from '../../../../constants/IconName';
 import { deleteGallery } from '../../../../store/actions/GalleryActions';
 import { dateFormat } from '../../../../helpers/DateFormat';
-import { showDeletePopUpSelector } from '../../../../store/selectors/ErrorSelector';
-import { setShowDeletePopUp } from '../../../../store/actions/ErrorActions';
-import SharedDeleteModal from '../../../shared/modal/SharedDeleteModal';
 
 const GallerySlider = () => {
   const dispatch = useDispatch();
 
-  const [galleryId, setGalleryId] = useState(null);
-
   const gallery = useSelector(gallerySelector());
-  const isDeleteModalVisible = useSelector(showDeletePopUpSelector());
 
-  const saveGalleryId = id => {
-    dispatch(setShowDeletePopUp('Delete Gallery ?'));
-    setGalleryId(id);
-  };
-
-  const handleDeleteGallery = () => dispatch(deleteGallery(galleryId));
+  const handleDeleteGallery = id => dispatch(deleteGallery(id));
 
   return gallery.map((photo, index) => (
     <View key={index} style={styles.container}>
-      <SharedDeleteModal isVisible={isDeleteModalVisible} handleDelete={handleDeleteGallery} />
       <View style={styles.header}>
         <View style={styles.profileWrapper}>
           <Image source={avatar} style={styles.profileImage} />
@@ -43,7 +31,7 @@ const GallerySlider = () => {
             </Text>
           </View>
         </View>
-        <TouchableOpacity style={styles.iconWrapper} onPress={() => saveGalleryId(photo.id)}>
+        <TouchableOpacity style={styles.iconWrapper} onPress={() => handleDeleteGallery(photo.id)}>
           <Icon.Fontisto name={IconName.close} size={32} color={Colors.backgroundAppColor} />
         </TouchableOpacity>
       </View>

@@ -2,7 +2,7 @@
 import React, { useCallback, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList, Image } from 'react-native';
 import * as Icon from '@expo/vector-icons';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import IconName from '../../../../constants/IconName';
@@ -15,10 +15,7 @@ import { sumRecipeGrocery } from '../../../../helpers/SumRecipeGrocery';
 import { isDefaultImage } from '../../../../helpers/IsDefaultImage';
 import { deleteRecipe } from '../../../../store/actions/RecipeActions';
 import SharedLinearGradientBackgroundHorizontal from '../../../shared/SharedLinearGradientBackgroundHorizontal';
-import { showDeletePopUpSelector } from '../../../../store/selectors/ErrorSelector';
-import { setShowDeletePopUp } from '../../../../store/actions/ErrorActions';
 import { recipePercentValue } from '../../../../helpers/RecipePercentValue';
-import SharedDeleteModal from '../../../shared/modal/SharedDeleteModal';
 import ShadowStyleHigh from '../../../../constants/ShadowStyleHigh';
 import SharedAnimatedDropdown from '../../../../components/shared/SharedAnimatedDropdown';
 
@@ -28,7 +25,6 @@ const RecipeList = ({ handleEditRecipeModalVisible, filteredList, showRecipeModa
   const optionValue = ['Edit', 'Delete'];
 
   const [choosedItem, setChoosedItem] = useState([]);
-  const isDeleteModalVisible = useSelector(showDeletePopUpSelector());
 
   let image = [breakfast, lunch, dinner];
 
@@ -39,12 +35,10 @@ const RecipeList = ({ handleEditRecipeModalVisible, filteredList, showRecipeModa
         setChoosedItem([]);
         break;
       case 'delete':
-        showDeleteModal();
+        handleDeleteRecipe();
         break;
     }
   };
-
-  const showDeleteModal = () => dispatch(setShowDeletePopUp('Delete Recipe ?'));
 
   const handleDeleteRecipe = () => dispatch(deleteRecipe(choosedItem.id));
 
@@ -66,7 +60,6 @@ const RecipeList = ({ handleEditRecipeModalVisible, filteredList, showRecipeModa
 
   const renderItem = ({ item }) => (
     <View style={styles.container}>
-      <SharedDeleteModal isVisible={isDeleteModalVisible} handleDelete={handleDeleteRecipe} />
       <TouchableOpacity
         style={ShadowStyleLow}
         activeOpacity={0.7}

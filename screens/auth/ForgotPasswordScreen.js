@@ -2,7 +2,7 @@ import React, { useEffect, useCallback, useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { LinearGradient } from 'expo-linear-gradient';
+import PropTypes from 'prop-types';
 
 import { ForgotPasswordForm } from '../../components/auth/ForgotPasswordForm';
 import { passwordForgot } from '../../store/actions/UserActions';
@@ -14,17 +14,18 @@ import SharedGoBackButtonAuth from '../../components/shared/SharedGoBackButtonAu
 import SharedLinearGradientBackgroundVertical from '../../components/shared/SharedLinearGradientBackgroundVertical';
 import Colors from '../../constants/Colors';
 
-const ForgotPasswordScreen = () => {
+const ForgotPasswordScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const [selected, setSelected] = useState(0);
   const handlePasswordForgot = useCallback(data =>
     dispatch(passwordForgot({ credentials: data, userType: selected }))
   );
-  const handleSetForgotPasswordError = data =>
-    dispatch(setForgotPasswordError(data));
+  const handleSetForgotPasswordError = data => dispatch(setForgotPasswordError(data));
 
   const forgotPasswordError = useSelector(forgotPasswordErrorSelector());
+
+  const goBack = () => navigation.goBack();
 
   useEffect(() => {
     return () => handleSetForgotPasswordError(false);
@@ -43,15 +44,13 @@ const ForgotPasswordScreen = () => {
         <KeyboardAwareScrollView enableOnAndroid>
           <LoginHeader />
 
-          <SharedTrainerClientChooseButton
-            userType={value => setSelected(value)}
-          />
+          <SharedTrainerClientChooseButton userType={value => setSelected(value)} />
           <ForgotPasswordForm
             onSubmit={handlePasswordForgot}
             forgotPasswordError={forgotPasswordError}
           />
         </KeyboardAwareScrollView>
-        <SharedGoBackButtonAuth />
+        <SharedGoBackButtonAuth goBack={goBack} />
       </SafeAreaView>
     </SharedLinearGradientBackgroundVertical>
   );
@@ -59,6 +58,10 @@ const ForgotPasswordScreen = () => {
 
 ForgotPasswordScreen.navigationOptions = {
   header: null
+};
+
+ForgotPasswordScreen.propTypes = {
+  navigation: PropTypes.object
 };
 
 export default ForgotPasswordScreen;

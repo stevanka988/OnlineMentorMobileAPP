@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     top: 0
   },
   coverImageBig: {
-    height: 250,
+    height: 300,
     width: Layout.window.width
   },
   coverImageSmall: {
@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   headerContainer: {
-    height: 250
+    height: 300
   },
   infoIcon: {
     padding: 15
